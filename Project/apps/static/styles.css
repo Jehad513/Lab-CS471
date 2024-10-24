@@ -13,3 +13,22 @@ font-size: 17px;
 .topnav a.active{
 color: #008CBA;
 }
+a {
+    color: blue; /* Default link color */
+    text-decoration: none; /* Remove underline */
+}
+
+a:hover {
+    color: red; /* Color when hovered */
+    text-decoration: underline; /* Add underline on hover */
+}
+
+table{
+    background-color: aqua;
+    width: 100%;
+    border-collapse: collapse;
+}
+tr:hover{
+    background-color: brown;
+
+}

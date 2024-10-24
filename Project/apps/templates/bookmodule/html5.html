@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+
+<head>
+    <title>html5</title>
+    <meta name="keywords" content="Books, recent, Learning, library">
+    <meta name="description" content="Books website">
+    <meta name="author" content="author name">
+    <link rel="icon" href="qu-icon.png">
+    <link rel="stylesheet" href="{% static 'styles.css' %}"> <!-- static template tag -->
+
+    <meta charset="UTF-8">
+
+
+
+</head>
+
+<body>
+    <div class="topnav"> <!-- add class attribute -->
+        <div class="topnav"> <!-- add class attribute -->
+        <a class="active" href="{% url "books.index" %}">Home</a> <!-- URL template tag-->
+        <a href="{% url "books.html5.links" %}">links</a> <!-- URL template tag -->
+        <a href="{% url "books.html5" %}">html5</a> <!-- URL template tag -->
+    </div>
+
+</body>
+
+</html>

@@ -1,0 +1,14 @@
+{
+  "ExpandedNodes": [
+    "",
+    "\\Project",
+    "\\Project\\apps",
+    "\\Project\\apps\\bookmodule",
+    "\\Project\\apps\\templates",
+    "\\Project\\apps\\templates\\bookmodule",
+    "\\Project\\apps\\templates\\layouts",
+    "\\Project\\apps\\usermodule"
+  ],
+  "SelectedNode": "\\Project\\apps\\templates\\layouts\\base.html",
+  "PreviewInSolutionExplorer": false
+}

@@ -1,7 +1,22 @@
-{% extends "layouts/base.html" %}
-{% load static %}
-{% block title %} Searching Page {% endblock title %}
-
-{% block content %}
-{{books}}
-{% endblock content %}
+<table border="1" cellpadding="5" cellspacing="0" style="border-collapse: collapse; width: 100%;">
+    <tr>
+        <th style="border: 1px solid black;">Title</th>
+        <th style="border: 1px solid black;">Author</th>
+    </tr>
+    {% if books %}
+        {% for book in books %}
+        <tr>
+            <td style="border: 1px solid black;">
+                {{ book.title }}
+            </td>
+            <td style="border: 1px solid black;">
+                {{ book.author }}
+            </td>
+        </tr>
+        {% endfor %}
+    {% else %}
+    <tr>
+        <td colspan='2' style='text-align:center; border: 1px solid black;'>No result</td>
+    </tr>
+    {% endif %}
+</table>

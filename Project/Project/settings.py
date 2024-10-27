@@ -30,14 +30,14 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
-    'apps.bookmodule',
-    'apps.usermodule',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'apps.bookmodule',
+    'apps.usermodule'
 ]
 
 MIDDLEWARE = [

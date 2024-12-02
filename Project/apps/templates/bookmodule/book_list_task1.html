@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Book List</title>
+</head>
+<body>
+    <h1>Books Priced 50 or Below</h1>
+    <ul>
+        {% for book in books %}
+            <li>{{ book.title }} - ${{ book.price }}</li>
+        {% empty %}
+            <p>No books found within the specified price range.</p>
+        {% endfor %}
+    </ul>
+</body>
+</html>

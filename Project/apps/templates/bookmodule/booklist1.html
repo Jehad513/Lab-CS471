@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Book List</title>
+</head>
+<body>
+    <h1>Book List</h1>
+    <a href="/books/lab9_part1/addbook">Add New Book</a>
+    <ul>
+        {% for book in books %}
+        <li>
+            <strong>{{ book.title }}</strong> by {{ book.author }} (Edition: {{ book.edition }}, Price: ${{ book.price }})
+            <a href="/books/lab9_part1/editbook/{{ book.id }}">Edit</a>
+            <a href="/books/lab9_part1/deletebook/{{ book.id }}">Delete</a>
+        </li>
+        {% endfor %}
+    </ul>
+</body>
+</html>

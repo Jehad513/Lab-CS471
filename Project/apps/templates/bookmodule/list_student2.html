@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>View Students</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+
+        h1 {
+            text-align: center;
+            margin-top: 20px;
+            color: #333;
+        }
+
+        .container {
+            width: 80%;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        a.button {
+            background-color: #4CAF50;
+            color: white;
+            text-decoration: none;
+            padding: 10px 15px;
+            border-radius: 5px;
+            margin-bottom: 20px;
+            display: inline-block;
+            transition: background-color 0.3s ease;
+        }
+
+        a.button:hover {
+            background-color: #45a049;
+        }
+
+        table {
+            width: 100%;
+            margin-top: 20px;
+            border-collapse: collapse;
+            background-color: #fff;
+        }
+
+        table, th, td {
+            border: 1px solid #ddd;
+        }
+
+        th, td {
+            padding: 12px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #f2f2f2;
+            color: #333;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+
+        tr:hover {
+            background-color: #f1f1f1;
+        }
+
+        td a {
+            background-color: #007BFF;
+            color: white;
+            padding: 5px 10px;
+            border-radius: 5px;
+            text-decoration: none;
+            margin: 2px;
+        }
+
+        td a:hover {
+            background-color: #0056b3;
+        }
+
+        .action-buttons {
+            display: flex;
+            justify-content: space-around;
+        }
+
+        .action-buttons a {
+            margin: 0 5px;
+        }
+
+        .add-student-btn {
+            margin-bottom: 20px;
+            display: block;
+            text-align: center;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1>View Students</h1>
+        <a href="{% url 'students.add_student2' %}" class="button add-student-btn">Add Student</a>
+        
+        <table>
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Age</th>
+                    <th>Address</th>
+                    <th>Edit</th>
+                    <th>Delete</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for student in students %}
+                    <tr>
+                        <td>{{ student.name }}</td>
+                        <td>{{ student.age }}</td>
+                        <td>
+                            {% for address in student.addresses.all %}
+                                {{ address.city }}
+                            {% endfor %}
+                        </td>
+                        <td class="action-buttons">
+                            <a href="{% url 'students.edit_student2' student.id %}" class="button">Edit</a>
+                        </td>
+                        <td class="action-buttons">
+                            <a href="{% url 'students.delete_student2' student.id %}" class="button">Delete</a>
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>

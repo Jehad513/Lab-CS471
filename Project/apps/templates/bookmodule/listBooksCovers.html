@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>View Books</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            width: 80%;
+            margin: 30px auto;
+            padding: 20px;
+            background-color: white;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+        }
+
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+
+        .button {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 15px;
+            border: none;
+            text-decoration: none;
+            border-radius: 5px;
+            font-size: 16px;
+            display: inline-block;
+            margin: 20px 0;
+            text-align: center;
+        }
+
+        .button:hover {
+            background-color: #45a049;
+        }
+
+        table {
+            width: 100%;
+            margin-top: 20px;
+            border-collapse: collapse;
+            table-layout: auto;
+        }
+
+        th, td {
+            padding: 12px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+            font-size: 16px;
+        }
+
+        th {
+            background-color: #f2f2f2;
+            color: #333;
+        }
+
+        tr:hover {
+            background-color: #f9f9f9;
+        }
+
+        td {
+            word-wrap: break-word;
+            max-width: 250px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .back-link {
+            display: block;
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .back-link a {
+            color: #4CAF50;
+            text-decoration: none;
+            font-size: 16px;
+        }
+
+        .back-link a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1>Books List</h1>
+        
+        <a href="{% url 'books.addBookWithCover' %}" class="button">Add Book</a>
+        
+        <table>
+            <thead>
+                <tr>
+                    <th>Title</th>
+                    <th>Cover Path</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for book in books %}
+                    <tr>
+                        <td>{{ book.title }}</td>
+                        <td>{{ book.coverPage }}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+
+        <div class="back-link">
+            <a href="{% url 'books.booklist1' %}">Back to Books List</a>
+        </div>
+    </div>
+</body>
+</html>

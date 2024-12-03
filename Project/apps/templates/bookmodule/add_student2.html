@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Add Student</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            width: 50%;
+            margin: 50px auto;
+            padding: 20px;
+            background-color: white;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+        }
+
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        label {
+            font-weight: bold;
+            color: #333;
+            display: block;
+            margin-bottom: 8px;
+        }
+
+        input, select, textarea {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-sizing: border-box;
+            font-size: 16px;
+        }
+
+        .form-group select {
+            height: 40px;
+        }
+
+        .form-group input[type="checkbox"] {
+            width: auto;
+        }
+
+        .form-group input[type="submit"] {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            cursor: pointer;
+            padding: 12px 20px;
+            font-size: 16px;
+            border-radius: 5px;
+            width: auto;
+            display: block;
+            margin: 20px auto;
+        }
+
+        .form-group input[type="submit"]:hover {
+            background-color: #45a049;
+        }
+
+        .back-link {
+            text-align: center;
+            display: block;
+            margin-top: 20px;
+        }
+
+        .back-link a {
+            color: #4CAF50;
+            text-decoration: none;
+            font-size: 16px;
+        }
+
+        .back-link a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Add New Student</h1>
+
+        <!-- Form for adding student -->
+        <form method="POST">
+            {% csrf_token %}
+            
+            <div class="form-group">
+                <label for="id_name">Name</label>
+                {{ form.name }}
+            </div>
+
+            <div class="form-group">
+                <label for="id_age">Age</label>
+                {{ form.age }}
+            </div>
+
+            <div class="form-group">
+                <label for="id_addresses">Addresses</label>
+                {{ form.addresses }}
+            </div>
+
+            <div class="form-group">
+                <input type="submit" value="Add Student">
+            </div>
+        </form>
+
+        <!-- Link to go back to the student list -->
+        <div class="back-link">
+            <a href="{% url 'students.list_student2' %}">Back to Students List</a>
+        </div>
+    </div>
+</body>
+</html>

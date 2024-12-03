@@ -27,5 +27,15 @@ urlpatterns = [
     path('lab9_part2/booklist2/', views.booklist2, name='booklist2'),
     path('lab9_part2/addbook2/', views.add_book2, name='add_book2'),
     path('lab9_part2/editbook2/<int:id>/', views.edit_book2, name='edit_book2'),
-    path('lab9_part2/deletebook2/<int:id>/', views.delete_book2, name='delete_book2')
+    path('lab9_part2/deletebook2/<int:id>/', views.delete_book2, name='delete_book2'),
+    path('lab10/add_student', views.add_student, name= "students.add_student"),
+    path('lab10/list_student', views.list_student, name= "students.list_student"),
+    path('lab10/delete_student<bID>', views.delete_student, name= "students.delete_student"),
+    path('lab10/edit_student<bID>', views.edit_student, name= "students.edit_student"),
+    path('lab10/add_student2', views.add_student2, name= "students.add_student2"),
+    path('lab10/list_student2', views.list_student2, name= "students.list_student2"),
+    path('lab10/delete_student2/<bID>', views.delete_student2, name= "students.delete_student2"),
+    path('lab10/edit_student2/<bID>', views.edit_student2, name= "students.edit_student2"),
+    path('lab10/addBookWithCover', views.addBookWithCover, name= "books.addBookWithCover"),
+
 ]

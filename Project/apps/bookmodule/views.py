@@ -1,9 +1,9 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.http import HttpResponse
-from .models import Book, Student, Address
+from .models import *
 from django.db.models import Q
 from django.db.models import Count, Sum, Avg, Max, Min
-from .forms import BookForm
+from .forms import BookForm,StudentForm,StudentForm2,BookCoverForm
 
 # Create your views here.
 
@@ -188,3 +188,79 @@ def delete_book2(request, id):
         book.delete()
         return redirect('/books/lab9_part2/booklist2')
     return render(request, 'bookmodule/delete_book2.html', {'book': book})
+
+def list_student(request):
+    students =Student.objects.all()
+    return render(request,'bookmodule/list_student.html',{'students':students})      
+
+def add_student(request):
+    form=StudentForm()
+    if request.method=='POST':
+        form=StudentForm(request.POST)
+        if form.is_valid:
+            form.save()
+            return redirect('students.list_student')
+    return render(request,'bookmodule/add_student.html',{'form':form})
+
+
+
+def edit_student(request,bID):
+    student = Student.objects.get(id=bID)
+    if request.method=='POST':
+        form = StudentForm(request.POST,instance=student)
+        if form.is_valid:
+            form.save()
+            return redirect('students.list_student')
+    form = StudentForm(instance=student)
+    return render(request,'bookmodule/add_student.html',{'form':form})
+
+
+def delete_student(request,bID):
+    student = Student.objects.get(id=bID)
+    student.delete()
+    return redirect('students.list_student')
+
+def list_student2(request):
+    students = Student2.objects.all()
+    return render(request,'bookmodule/list_student2.html',{'students':students})      
+
+def add_student2(request):
+    if request.method=='POST':
+        form=StudentForm2(request.POST)
+        if form.is_valid:
+            form.save()
+            return redirect('students.list_student2')
+    else:
+        form=StudentForm2()
+        return render(request,'bookmodule/add_student.html',{'form':form})
+
+
+
+def edit_student2(request,bID):
+    student = Student2.objects.get(id=bID)
+    if request.method=='POST':
+        form = StudentForm2(request.POST,instance=student)
+        if form.is_valid:
+            form.save()
+            return redirect('students.list_student2')
+    form = StudentForm2(instance=student)
+    return render(request,'bookmodule/add_student.html',{'form':form})
+
+
+def delete_student2(request,bID):
+    student = Student2.objects.get(id=bID)
+    student.delete()
+    return redirect('students.list_student2')
+
+def addBookWithCover(request):
+    if request.method=='POST':
+        form = BookCoverForm(request.POST,request.FILES)
+        if form.is_valid():
+            form.save()
+            books =BookCover.objects.all()
+            return render(request,'bookmodule/listBooksCovers.html',{'books':books})
+        else:
+            print(form.errors)
+
+    form = BookCoverForm(None)
+    return render(request,'bookmodule/addbookcover.html',{'form':form})

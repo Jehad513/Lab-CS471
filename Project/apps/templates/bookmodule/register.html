@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+{% load static %}
+
+<html lang="en">
+
+<head>
+    <title>About Us</title>
+    <meta name="keywords" content="Books, recent, Learning, library">
+    <meta name="description" content="Books website">
+    <meta name="author" content="author name">
+    <link rel="icon" href="qu-icon.png">
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="{% static 'styles.css' %}"> <!-- static template tag -->
+
+</head>
+
+
+
+<body>
+
+
+    <form method="POST">
+        {% csrf_token %}
+        <div>
+            {{ form.non_field_errors }} <!-- Display form-wide errors, e.g., password mismatch -->
+        </div>
+        <div>
+            {{ form.username.label_tag }} {{ form.username }} <br>
+        </div>
+        <div>
+            {{ form.password1.label_tag }} {{ form.password1 }} <br>
+        </div>
+        <div>
+            {{ form.password2.label_tag }} {{ form.password2 }} <br>
+        </div>
+        <button type="submit">Register</button>
+        {% if messages %}
+        <ul>
+            {% for message in messages %}
+                <li>{{ message }}</li>
+            {% endfor %}
+        </ul>
+        {% endif %}
+
+    </form>
+
+    <br>
+
+    <a href="{% url 'books.loginUser' %}">Login</a>
+
+
+
+    </form>
+</body>

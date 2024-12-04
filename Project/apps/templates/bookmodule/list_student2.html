@@ -98,6 +98,10 @@
 </head>
 
 <body>
+    {% if user.is_authenticated %}
+    <a href="{% url 'books.logoutuser' %}">Logout</a>
+    {% endif %}
+    <br>
     <div class="container">
         <h1>View Students</h1>
         <a href="{% url 'students.add_student2' %}" class="button add-student-btn">Add Student</a>

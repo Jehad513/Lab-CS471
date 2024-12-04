@@ -1,5 +1,7 @@
 from django import forms
 from .models import Book,Student,Address,Student2,BookCover
+from django.contrib.auth.models import User
+from django.contrib.auth.forms import UserCreationForm
 
 class BookForm(forms.ModelForm):
     class Meta:
@@ -37,3 +39,9 @@ class BookCoverForm(forms.ModelForm):
         exclude = []
     title = forms.CharField(max_length=100,label='Name',required=True,widget=forms.TextInput())
     coverPage = forms.ImageField(label='Cover Page',required=True,widget=forms.ClearableFileInput() )
+
+class SignUpForm(UserCreationForm):
+    class Meta:
+        model = User
+        fields = ('username',
+                  'password1', 'password2')

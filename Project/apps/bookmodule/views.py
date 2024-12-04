@@ -3,7 +3,9 @@ from django.http import HttpResponse
 from .models import *
 from django.db.models import Q
 from django.db.models import Count, Sum, Avg, Max, Min
-from .forms import BookForm,StudentForm,StudentForm2,BookCoverForm
+from .forms import BookForm,StudentForm,StudentForm2,BookCoverForm,SignUpForm
+from django.contrib.auth import login,logout,authenticate
+from django.contrib import messages
 
 # Create your views here.
 
@@ -221,36 +223,48 @@ def delete_student(request,bID):
     return redirect('students.list_student')
 
 def list_student2(request):
-    students = Student2.objects.all()
-    return render(request,'bookmodule/list_student2.html',{'students':students})      
+    if request.user.is_authenticated:
+        students = Student2.objects.all()
+        return render(request,'bookmodule/list_student2.html',{'students':students})  
+    else:
+        return redirect(register)     
 
 def add_student2(request):
-    if request.method=='POST':
-        form=StudentForm2(request.POST)
-        if form.is_valid:
-            form.save()
-            return redirect('students.list_student2')
+    if request.user.is_authenticated:
+        if request.method=='POST':
+            form=StudentForm2(request.POST)
+            if form.is_valid:
+                form.save()
+                return redirect('students.list_student2')
+        else:
+            form=StudentForm2()
+            return render(request,'bookmodule/add_student.html',{'form':form})
     else:
-        form=StudentForm2()
-        return render(request,'bookmodule/add_student.html',{'form':form})
+        return redirect(register)    
 
 
 
 def edit_student2(request,bID):
-    student = Student2.objects.get(id=bID)
-    if request.method=='POST':
-        form = StudentForm2(request.POST,instance=student)
-        if form.is_valid:
-            form.save()
-            return redirect('students.list_student2')
-    form = StudentForm2(instance=student)
-    return render(request,'bookmodule/add_student.html',{'form':form})
+    if request.user.is_authenticated:
+        student = Student2.objects.get(id=bID)
+        if request.method=='POST':
+            form = StudentForm2(request.POST,instance=student)
+            if form.is_valid:
+                form.save()
+                return redirect('students.list_student2')
+        form = StudentForm2(instance=student)
+        return render(request,'bookmodule/add_student.html',{'form':form})
+    else:
+        return redirect(register)
 
 
 def delete_student2(request,bID):
-    student = Student2.objects.get(id=bID)
-    student.delete()
-    return redirect('students.list_student2')
+    if request.user.is_authenticated:
+        student = Student2.objects.get(id=bID)
+        student.delete()
+        return redirect('students.list_student2')
+    else:
+        return redirect(register)
 
 def addBookWithCover(request):
     if request.method=='POST':
@@ -264,3 +278,48 @@ def addBookWithCover(request):
 
     form = BookCoverForm(None)
     return render(request,'bookmodule/addbookcover.html',{'form':form})
+
+def homepage(request):
+    return redirect(list_student2)
+
+
+
+
+
+def register(request):
+    form =SignUpForm()
+    if request.method=='POST':
+        form=SignUpForm(request.POST)
+        if form.is_valid():
+            form.save()
+            username = form.cleaned_data['username']
+            password = form.cleaned_data['password1']
+            user = authenticate(username=username, password=password)
+
+            login(request, user)
+            messages.success(request, "You Have Successfully Registered!")
+            return redirect(homepage)
+        else:
+            messages.error(request, form.error_messages)
+    return render(request,'bookmodule/register.html',{'form':form})
+
+
+
+def logoutuser(request):
+    logout(request)
+    messages.success(request,"You have been logged out")
+    return redirect(register)
+
+
+def loginUser(request):
+    if request.method == 'POST':
+        username = request.POST.get('username')
+        password = request.POST.get('password')
+        user = authenticate(request, username=username, password=password)
+        if user is not None:
+            login(request, user)
+            messages.success(request, "You have successfully logged in!")
+            return redirect(homepage)
+        else:
+            messages.error(request, "Invalid username or password.")
+    return render(request, 'bookmodule/login.html')

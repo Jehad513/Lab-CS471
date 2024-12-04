@@ -37,5 +37,9 @@ urlpatterns = [
     path('lab10/delete_student2/<bID>', views.delete_student2, name= "students.delete_student2"),
     path('lab10/edit_student2/<bID>', views.edit_student2, name= "students.edit_student2"),
     path('lab10/addBookWithCover', views.addBookWithCover, name= "books.addBookWithCover"),
+    path('lab11/homepage', views.homepage, name= "books.homepage"),
+    path('lab11/register', views.register, name= "books.register"),
+    path('lab11/logoutuser', views.logoutuser, name= "books.logoutuser"),
+    path('lab11/loginUser', views.loginUser, name= "books.loginUser"),
 
 ]

@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task 1</title>
+</head>
+<body>
+    <h2>Task 1: Change Background Color and Text</h2>
+    <button id="colorButton">Change Background Color</button>
+    <button id="textButton">Change Text</button>
+    <div id="contentDiv" style="width: 300px; height: 200px; border: 1px solid black;">
+        <p>This is the original text inside the div.</p>
+    </div>
+
+    <script>
+        document.getElementById('colorButton').onclick = function() {
+            document.getElementById('contentDiv').style.backgroundColor = "lightblue";
+        };
+        document.getElementById('textButton').onclick = function() {
+            document.getElementById('contentDiv').innerHTML = "<p>The text has been changed!</p>";
+        };
+    </script>
+</body>
+</html>

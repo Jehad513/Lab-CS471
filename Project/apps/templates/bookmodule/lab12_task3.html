@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task 3</title>
+</head>
+<body>
+    <h2>Task 3: Toggle Hide and Show</h2>
+    <button id="toggleButton">Hide/Show</button>
+    <div id="toggleDiv" style="width: 300px; height: 200px; background-color: lightcoral; display: block;">
+        <p>This div can be hidden or shown.</p>
+    </div>
+
+    <script>
+        document.getElementById('toggleButton').onclick = function() {
+            const div = document.getElementById('toggleDiv');
+            if (div.style.display === "none") {
+                div.style.display = "block";
+            } else {
+                div.style.display = "none";
+            }
+        };
+    </script>
+</body>
+</html>

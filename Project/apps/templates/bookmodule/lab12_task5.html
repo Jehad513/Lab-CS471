@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task 5</title>
+</head>
+<body>
+    <h2>Task 5: Create Table Using JavaScript</h2>
+    <div id="tableContainer"></div>
+
+    <script>
+        const tableContainer = document.getElementById('tableContainer');
+
+        const table = document.createElement('table');
+        table.border = "1";
+        
+        const headerRow = table.insertRow();
+        const header1 = headerRow.insertCell(0);
+        header1.textContent = "Name";
+        const header2 = headerRow.insertCell(1);
+        header2.textContent = "Age";
+        
+        const row1 = table.insertRow();
+        const cell1_1 = row1.insertCell(0);
+        cell1_1.textContent = "John";
+        const cell1_2 = row1.insertCell(1);
+        cell1_2.textContent = "30";
+        
+        const row2 = table.insertRow();
+        const cell2_1 = row2.insertCell(0);
+        cell2_1.textContent = "Jane";
+        const cell2_2 = row2.insertCell(1);
+        cell2_2.textContent = "25";
+
+        tableContainer.appendChild(table);
+    </script>
+</body>
+</html>

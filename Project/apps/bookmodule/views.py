@@ -323,3 +323,19 @@ def loginUser(request):
         else:
             messages.error(request, "Invalid username or password.")
     return render(request, 'bookmodule/login.html')
+
+
+def lab12task1(request):
+    return render(request,'bookmodule/lab12_task1.html')
+
+def lab12task2(request):
+    return render(request,'bookmodule/lab12_task2.html')
+
+def lab12task3(request):
+    return render(request,'bookmodule/lab12_task3.html')
+
+def lab12task4(request):
+    return render(request,'bookmodule/lab12_task4.html')
+
+def lab12task5(request):
+    return render(request,'bookmodule/lab12_task5.html')
